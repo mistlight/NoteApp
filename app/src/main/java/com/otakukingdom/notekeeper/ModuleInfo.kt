@@ -4,30 +4,30 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class ModuleInfo() : Parcelable {
-    private var mModuleId: String? = null
-    private var mTitle: String? = null
-    private var mIsComplete = false
+    var moduleId: String? = null
+    var title: String? = null
+    var isComplete = false
 
     constructor(moduleId: String, title: String) : this() {
-        this.mModuleId = moduleId
-        this.mTitle = title
+        this.moduleId = moduleId
+        this.title = title
     }
 
     constructor(moduleId: String, title: String, isComplete: Boolean) : this() {
-        this.mModuleId = moduleId
-        this.mTitle = title
-        this.mIsComplete = isComplete
+        this.moduleId = moduleId
+        this.title = title
+        this.isComplete = isComplete
     }
 
     constructor(source: Parcel) : this() {
-        this.mModuleId = source.readString()
-        this.mTitle = source.readString()
-        this.mIsComplete = source.readByte() == 1.toByte()
+        this.moduleId = source.readString()
+        this.title = source.readString()
+        this.isComplete = source.readByte() == 1.toByte()
     }
 
     override fun toString(): String {
-        return if (this.mTitle != null) {
-            this.mTitle!!
+        return if (this.title != null) {
+            this.title!!
         } else {
             "No Title"
         }
@@ -39,17 +39,17 @@ class ModuleInfo() : Parcelable {
 
         val that: ModuleInfo = other as ModuleInfo
 
-        return mModuleId.equals(that.mModuleId)
+        return moduleId.equals(that.moduleId)
     }
 
     override fun hashCode(): Int {
-        return this.mModuleId.hashCode()
+        return this.moduleId.hashCode()
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(this.mModuleId)
-        dest.writeString(this.mTitle)
-        dest.writeByte((if (this.mIsComplete) 1 else 0).toByte())
+        dest.writeString(this.moduleId)
+        dest.writeString(this.title)
+        dest.writeByte((if (this.isComplete) 1 else 0).toByte())
     }
 
     override fun describeContents(): Int {
