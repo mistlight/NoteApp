@@ -1,9 +1,8 @@
 package com.otakukingdom.notekeeper
 
-class NoteInfo {
-    var courseInfo: CourseInfo? = null
-    var title: String? = null
-    var text: String? = null
+class NoteInfo(var courseInfo: CourseInfo?,
+               var title: String?,
+               var text: String?) {
 
     fun getCompareKey(): String {
         if (courseInfo == null || courseInfo!!.courseId == null) {
