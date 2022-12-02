@@ -23,8 +23,35 @@ class DataManager {
         return "jimw@jwhh.com"
     }
 
-    fun getNotes(): MutableList<NoteInfo> {
-        return mNotes
+    fun getCourse(id: String): CourseInfo? {
+        for (course in mCourses) {
+            if (id == course.courseId) {
+                return course
+            }
+        }
+
+        return null
+    }
+
+    fun getNotes(course: CourseInfo): List<NoteInfo> {
+        val notes: ArrayList<NoteInfo> = ArrayList()
+        for (note in mNotes) {
+            if (course == note.courseInfo) {
+                notes.add(note)
+            }
+        }
+        return notes
+    }
+
+    fun getNoteCount(course: CourseInfo): Int {
+        var count = 0
+        for (note in mNotes) {
+            if (course == note.courseInfo) {
+                count++
+            }
+        }
+
+        return count
     }
 
     fun createNewNote(): Int {
